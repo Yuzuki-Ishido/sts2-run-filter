@@ -3,30 +3,35 @@
 
 from enum import StrEnum
 
-class RedCard(StrEnum):
+class CardID(StrEnum):
+    """Base type for all Card IDs."""
+    pass
+
+
+class RedCard(CardID):
     STRIKE = "STRIKE_IRONCLAD"
     DEFEND = "DEFEND_IRONCLAD"
     BASH = "BASH"
 
-class GreenCard(StrEnum):
+class GreenCard(CardID):
     STRIKE = "STRIKE_SILENT"
     DEFEND = "DEFEND_SILENT"
     NEUTRALIZE = "NEUTRALIZE"
     SURVIVOR = "SURVIVOR"
 
-class OrangeCard(StrEnum):
+class OrangeCard(CardID):
     STRIKE = "STRIKE_REGENT"
     DEFEND = "DEFEND_REGENT"
     FALLING_STAR = "FALLING_STAR"
     VENERATE = "VENERATE"
 
-class PinkCard(StrEnum):
+class PinkCard(CardID):
     STRIKE = "STRIKE_NECROBINDER"
     DEFEND = "DEFEND_NECROBINDER"
     UNLEASH = "UNLEASH"
     BODYGUARD = "BODYGUARD"
 
-class BlueCard(StrEnum):
+class BlueCard(CardID):
     STRIKE = "STRIKE_DEFECT"
     DEFEND = "DEFEND_DEFECT"
     ZAP = "ZAP"

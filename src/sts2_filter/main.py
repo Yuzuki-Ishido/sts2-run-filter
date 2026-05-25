@@ -7,46 +7,45 @@ import json
 from sts2_filter.models.run import Run
 
 
+def log(string):
+    with open("outfile.txt", "a") as f:
+        print(string, file=f)
+
+
 load_dotenv()
 
 raw = os.getenv('SAVE_HISTORY_PATH')
 
-if sys.platform == "linux":
-    path = raw.replace('\\','/').replace('C:', '/mnt/c')
+singleplayer = False
+
+if singleplayer:
+    test_file = os.getenv('TEST_SILENT_FILE_PATH')
 else:
-    # Windows native
-    path = raw
+    test_file = os.getenv('TEST_MULTIPLAYER_FILE_PATH')
 
-basePath = Path(path)
+ROOT = Path(__file__).resolve().parents[2]
 
-print(basePath)
+# if sys.platform == "linux":
+#     path = raw.replace('\\','/').replace('C:', '/mnt/c')
+# else:
+#     # Windows native
+#     path = raw
+
+# basePath = Path(path)
 
 
 # test file recording winning a10 silent shiv run
-testFile = basePath / "1778537051.run"
+# test_file = basePath / "1778537051.run"
+
 
 def main():
-    # run = Run()
-    with open(testFile, encoding="utf-8") as infile:
+    open("outfile.txt", "w").close()
+    with open(test_file, encoding="utf-8") as infile:
         data = json.load(infile)
-
         run = Run.from_json(data)
-        # run.set_seed(data)
-        print("seed = |", run.seed, '|')
-        print("acts = |", run.acts, '|')
-        for act in run.acts:
-            print(act, type(act))
+        log(run)
 
-
-
-
-
-
-# with open(testFile, "r") as infile, open("outfile.txt", "w") as outfile:
-#     for line in infile:
-#         outfile.write(line)
-
-
+    
 
 if __name__ == '__main__':
     main()
